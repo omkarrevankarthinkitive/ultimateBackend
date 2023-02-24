@@ -16,6 +16,6 @@ const router = express.Router();
 
 router.route("/").post(doctorDetailPost);
 router.route("/getdoctorsname").post( doctorSearch);
-router.route("/doctorsPage/:id").post( docsearchAll);
+router.route("/doctorsPage").post( docsearchAll);
 
 module.exports = router;

@@ -3,7 +3,7 @@ const { User } = require("../models/userModel.js");
 function authUsered(req, res, next) {
   if (req.body == null) {
     res.status(401);
-    return res.send("you need to sign in");
+    return res.send("Please SignIn first");
   }
 
   next();
@@ -14,7 +14,7 @@ function adminRole() {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      res.send("Oops,we dont have you in our registery plz regsiter first ");
+      res.send("Oops,we dont have you in our registery please regsiter first ");
     }
     if (user.role !== "Admin") {
       res.status(401);

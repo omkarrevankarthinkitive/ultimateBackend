@@ -22,7 +22,7 @@ const patientSchema = new mongoose.Schema({
   },
   maritialStatus: {
     type: String,
-    enum: ["Unmarried", "Married", "Widower", "Divorced", "Seperated", "Widow"],
+    enum: ["Unmarried", "Married", "Widowed", "Divorced", "Seperated", "Widow"],
   },
   fatherName: {
     type: String,

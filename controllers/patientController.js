@@ -13,9 +13,9 @@ const patientpost = async (req, res) => {
     res.send(error.message);
   }
 
-  const thisEmail = req.body.email;
+  const e_mail = req.body.email;
 
-  const user = await User.findOne({ thisEmail });
+  const user = await User.findOne({ e_mail });
   if (!user) {
     res.status(400).send("User does not exist");
   }

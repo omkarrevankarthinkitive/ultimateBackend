@@ -7,9 +7,9 @@ const appointmentSchema = new mongoose.Schema({
     Type: String,
   },
   room: {
-    type: Number,
+    type: String,
   },
-  diagnosis: {
+  diagnosis: {  
     type: String,
   },
   firstName: {
@@ -23,9 +23,11 @@ const appointmentSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
+    enum: ["Male", "Female", "Others"],
+    required: true,
   },
   cellPhone: {
-    type: Number,
+    type: String,
   },
   homePhone: {
     type: Number,
@@ -36,7 +38,7 @@ const appointmentSchema = new mongoose.Schema({
   address: {
     Type: String,
   },
-  Province: {
+  province: {
     type: String,
   },
   city: {

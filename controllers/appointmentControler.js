@@ -1,7 +1,7 @@
 const { Appointment } = require("../models/appointmentModel.js");
 
 //post an appointment week
-const PostAppointment = async (req, res) => {
+const postAppointment = async (req, res) => {
   try {
     const newAppointment = new Appointment({
       reason: req.body.reason,
@@ -34,14 +34,14 @@ const PostAppointment = async (req, res) => {
 //search appointment
 const aptSearch = async (req, res) => {
   try {
-    const bodyIn = req.body.searchField;
+    const body = req.query.search;
 
-    if (!bodyIn) {
-      throw new Error();
+    if (!body) {
+      throw new Error("type something to get result");
     }
 
     const aptName = await Appointment.find(
-      { firstName: { $regex: `${bodyIn}` } },
+      { firstName: { $regex: `${body}` } },
       {
         firstName: 1,
         lastName: 1,
@@ -72,23 +72,11 @@ const getAppointment = async (req, res) => {
   }
 };
 
-//update appointment list
-const updateAppoinment = async (req, res) => {
-  try {
-    const id = "63beb9c781b7d927f3e155d5";
-    const getAppoint = await Appointment.findById(id);
 
-    getAppoint.fields = req.body.fields;
-    const updateSave = await getAppoint.save();
-    res.send(updateSave);
-  } catch (error) {
-    res.send(error.message);
-  }
-};
 
 module.exports = {
-  PostAppointment,
+  postAppointment,
   getAppointment,
-  updateAppoinment,
+ 
   aptSearch,
 };

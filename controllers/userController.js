@@ -8,7 +8,6 @@ const Jwt = require("jsonwebtoken");
 //authenticate user (login)
 const authUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body, "xyz");
   const user = await User.findOne({ email });
   if (!user) return res.status(401).send("Invalid email or password.");
 
@@ -65,7 +64,7 @@ const requestPasswordReset = async (req, res) => {
   const validPassword = await bcrypt.compare(oldPass, user.password);
 
   if (!validPassword) {
-    res.status(400).send("The Old password u have given is wrong");
+    res.status(400).send("Invalid Password");
     return;
   }
 

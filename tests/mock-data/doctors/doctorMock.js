@@ -50,7 +50,7 @@ const getDoc={
 
 
 
-function addoctorFunction(){
+function addDoctorFunction(){
     return(
         addDoctor
     )
@@ -71,5 +71,5 @@ function doctordetailFunction(){
 
 
 module.exports={
-    addoctorFunction,searchDoctorFunction,doctordetailFunction
+    addDoctorFunction,searchDoctorFunction,doctordetailFunction
 }

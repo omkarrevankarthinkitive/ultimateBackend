@@ -11,7 +11,7 @@ const doctorSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
-  Gender: {
+  gender: {
     type: String,
     required: true,
   },
@@ -19,8 +19,8 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
-    type: Object,
+  userId: {
+    type: String,
     required: true,
     ref: "User",
   },
@@ -61,6 +61,9 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  appointmentId:{
+    type:[String]
+  }
 });
 
 const Doctor = mongoose.model("Doctor", doctorSchema);

@@ -5,22 +5,22 @@ const { User } = require("../models/userModel.js");
 //post Doctor
 
 const doctorDetailPost = async (req, res) => {
-  const { error } = validateUser(req.body);
+  const { error } = req.body;
   if (error) {
     res.send(error.message);
   }
 
-  const thisEmail = req.body.email;
+  const e_email = req.body.email;
 
-  const user = await User.findOne({ thisEmail });
+  const user = await User.findOne({ e_email });
   if (!user) {
     res.status(400).send("User does not exist");
   }
   const newDoctor = new Doctor({
     doctorName: req.body.doctorName,
-    email: user,
+    userId:req.body.userId ,
     qualification: req.body.qualification,
-    Gender: req.body.Gender,
+    gender: req.body.gender,
     clinicName: req.body.clinicName,
     phoneNumber: req.body.phoneNumber,
     streetAddress: req.body.streetAddress,
@@ -35,11 +35,11 @@ const doctorDetailPost = async (req, res) => {
   res.status(200).json(newDoctor);
   return;
 };
-
+ 
 //doctor search by id
 const docsearchAll = async (req, res) => {
   try {
-    const theid = req.params.id;
+    const theid = req.query.id;
     const doctorID = await Doctor.findById(theid);
     res.send(doctorID);
   } catch (error) {
@@ -51,10 +51,10 @@ const docsearchAll = async (req, res) => {
 
 const doctorSearch = async (req, res) => {
   try {
-    const bodyIn = req.body.searchField;
+    const body= req.body.searchField;
 
     const getDoctorsName = await Doctor.find(
-      { doctorName: { $regex: `${bodyIn}` } },
+      { doctorName: { $regex: `${body}` } },
       { doctorName: 1, _id: 1, img: 1 }
     ).limit(5);
 

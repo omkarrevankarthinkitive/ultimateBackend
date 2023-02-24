@@ -1,7 +1,7 @@
 
 
 
-const {doctordetailFunction,searchDoctorFunction,addoctorFunction}=require(".././mock-data/doctors/doctorMock")
+const {doctordetailFunction,searchDoctorFunction,addDoctorFunction}=require(".././mock-data/doctors/doctorMock")
 
 
 
@@ -63,7 +63,7 @@ const getDoctor={
  //add doctor
  describe('add doctor', () => {
     test('addDoctor',() => {
-        expect(addoctorFunction()).toStrictEqual(addDoctorObj);
+        expect(addDoctorFunction()).toStrictEqual(addDoctorObj);
       },30000)
   });   
 
