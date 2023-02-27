@@ -18,11 +18,11 @@ const doctorDetailPost = async (req, res) => {
   }
   const newDoctor = new Doctor({
     doctorName: req.body.doctorName,
-    userId:req.body.userId ,
+    userId: req.body.userId,
     qualification: req.body.qualification,
-    gender: req.body.gender,
+    gender: req.body.Gender,
     clinicName: req.body.clinicName,
-    phoneNumber: req.body.phoneNumber,
+    phoneNumber: req.body.phoneNumber, 
     streetAddress: req.body.streetAddress,
     city: req.body.city,
     state: req.body.state,
@@ -35,7 +35,7 @@ const doctorDetailPost = async (req, res) => {
   res.status(200).json(newDoctor);
   return;
 };
- 
+
 //doctor search by id
 const docsearchAll = async (req, res) => {
   try {
@@ -51,7 +51,7 @@ const docsearchAll = async (req, res) => {
 
 const doctorSearch = async (req, res) => {
   try {
-    const body= req.body.searchField;
+    const body = req.query.searchField;
 
     const getDoctorsName = await Doctor.find(
       { doctorName: { $regex: `${body}` } },

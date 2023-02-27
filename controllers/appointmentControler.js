@@ -21,13 +21,13 @@ const postAppointment = async (req, res) => {
       postalCode: req.body.postalCode,
       aptTime: req.body.aptTime,
       aptDate: req.body.aptDate,
-    });
+    }); 
 
     await newAppointment.save();
-    return newAppointment;
-    res.send(newAppointment);
+    
+    res.status(200).send(newAppointment);
   } catch (error) {
-    res.status(400).send("error", error.message);
+    res.send("error", error.message);
   }
 };
 
@@ -72,11 +72,8 @@ const getAppointment = async (req, res) => {
   }
 };
 
-
-
 module.exports = {
   postAppointment,
   getAppointment,
- 
   aptSearch,
 };

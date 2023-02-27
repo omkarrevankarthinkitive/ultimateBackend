@@ -23,8 +23,8 @@ const appointmentSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ["Male", "Female", "Others"],
-    required: true,
+    
+    
   },
   cellPhone: {
     type: String,
@@ -46,7 +46,7 @@ const appointmentSchema = new mongoose.Schema({
   },
   postalCode: {
     type: String,
-  },
+  }, 
   aptTime: {
     type: String,
   },
@@ -58,3 +58,4 @@ const appointmentSchema = new mongoose.Schema({
 const Appointment = mongoose.model("Appiontment", appointmentSchema);
 
 module.exports = { Appointment, appointmentSchema };
+ 
