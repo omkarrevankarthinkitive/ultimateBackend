@@ -26,6 +26,9 @@ const postAppointment = async (req, res) => {
     await newAppointment.save();
 
     res.status(200).send(newAppointment);
+    if (!newAppointment) {
+      throw new Error("appointment set to failed");
+    }
   } catch (error) {
     res.send("error", error.message);
   }
