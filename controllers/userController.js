@@ -40,8 +40,7 @@ const registerUser = async (req, res) => {
   try {
     const { error } = validateUser(req.body);
     if (error) {
-      res.send(error.message);
-      return;
+     throw new Error(error.message)
     }
 
     const { name, email, password } = req.body;
