@@ -31,7 +31,7 @@ const registerUser = async (req, res) => {
     return;
   }
 
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
 
   let userExists = await User.findOne({ email });
 
@@ -41,7 +41,7 @@ const registerUser = async (req, res) => {
   }
 
   userExists = new User(
-    _.pick(req.body, ["name", "email", "password", "role", "phoneNumber"])
+    _.pick(req.body, ["name", "email", "password", "phoneNumber"])
   );
 
   const salt = await bcrypt.genSalt(10);
@@ -55,26 +55,34 @@ const registerUser = async (req, res) => {
 
 //change password
 const requestPasswordReset = async (req, res) => {
-  const { email, oldPass, newPass } = req.body;
-  const user = await User.findOne({ email });
-  if (!user) {
-    res.status(400).send("User does not exist");
+  try {
+    const { email, oldPass, newPass } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.status(400).send("User does not exist");
+      return;
+    }
+
+  
+    const validPassword = await bcrypt.compare(oldPass, user.password);
+  
+    if (!validPassword) {
+      res.status(400).send("Invalid Password");
+      return;
+    }
+  
+    const salt = await bcrypt.genSalt(10);
+  
+    user.password = await bcrypt.hash(newPass, salt);
+    await user.save();
+    res.send("updated Successfully");
+  
+    
+    
+  } catch (error) {
+    res.status(401).send(error.message)
   }
 
-  const validPassword = await bcrypt.compare(oldPass, user.password);
-
-  if (!validPassword) {
-    res.status(400).send("Invalid Password");
-    return;
-  }
-
-  const salt = await bcrypt.genSalt(10);
-
-  user.password = await bcrypt.hash(newPass, salt);
-  await user.save();
-  res.send("updated Successfully");
-
-  return;
 };
 
 module.exports = {
@@ -82,3 +90,4 @@ module.exports = {
   registerUser,
   requestPasswordReset,
 };
+ 

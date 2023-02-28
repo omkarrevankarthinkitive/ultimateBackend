@@ -5,7 +5,6 @@ const connectDB = require("./config/db.js");
 
 //ROUTE IMPORTS
 const userRoutes = require("./routes/userRoutes.js");
-const patientRoutes = require("./routes/patientRoutes.js");
 const doctorDetailRoutes = require("./routes/doctorDetailsRoute.js");
 const appointmentRoutes = require("./routes/appointmentRoute.js");
 
@@ -23,9 +22,6 @@ app.use(cors());
 
 //USERS
 app.use("/api/users", userRoutes);
-
-//PATIENTS
-app.use("/api/patient", patientRoutes);
 
 //DOCTORS
 app.use("/api/doctor/doctordetail", doctorDetailRoutes);

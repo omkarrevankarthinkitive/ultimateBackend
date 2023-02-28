@@ -21,10 +21,10 @@ const postAppointment = async (req, res) => {
       postalCode: req.body.postalCode,
       aptTime: req.body.aptTime,
       aptDate: req.body.aptDate,
-    }); 
+    });
 
     await newAppointment.save();
-    
+
     res.status(200).send(newAppointment);
   } catch (error) {
     res.send("error", error.message);

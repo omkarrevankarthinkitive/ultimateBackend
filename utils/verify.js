@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+const Jwt = require("jsonwebtoken");
 
 //verify the token
 const verifyToken = async (req, res, next) => {
@@ -9,11 +9,9 @@ const verifyToken = async (req, res, next) => {
 
     if (decode) {
       next();
-    } else {
-      res.send({ val: false });
     }
   } catch (error) {
-    res.send({ val: false });
+    res.send(error.message);
   }
 };
 

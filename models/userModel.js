@@ -15,11 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  role: {
-    type: String,
-    enum: ["Admin", "Moderator", "User", "Doctor"],
-    default: "User",
-  },
+ 
   phoneNumber: {
     type: String,
     required: true,
@@ -43,7 +39,6 @@ function validateUser(user) {
       .length(10)
       .pattern(/^[0-9]+$/)
       .required(),
-    role: Joi.string(),
   });
 
   return schema.validate(user);

@@ -1,11 +1,11 @@
-const Doctor = require("../models/doctorDetailModel.js");
+const {Doctor,validateDoctor} = require("../models/doctorDetailModel.js");
 
 const { User } = require("../models/userModel.js");
 
 //post Doctor
 
 const doctorDetailPost = async (req, res) => {
-  const { error } = req.body;
+  const { error } = validateDoctor(req.body);
   if (error) {
     res.send(error.message);
   }

@@ -33,30 +33,6 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  clinicAddress: {
-    type: new mongoose.Schema({
-      streetAddress: {
-        type: String,
-        required: true,
-      },
-      streetAddress2: {
-        type: String,
-        required: true,
-      },
-      city: {
-        type: String,
-        required: true,
-      },
-      state: {
-        type: String,
-        required: true,
-      },
-      pinCode: {
-        type: String,
-        required: true,
-      },
-    }),
-  },
   aboutMyself: {
     type: String,
     required: true,
@@ -77,9 +53,16 @@ function validateDoctor(doctor) {
       .length(10)
       .pattern(/^[0-9]+$/)
       .required(),
+      clinicName: Joi.string(),
+      userId: Joi.string(),
+      aboutMyself: Joi.string(),
+      img: Joi.string(),
+      
+
+
   });
 
   return schema.validate(doctor);
 }
 
-module.exports = Doctor;
+module.exports = {Doctor,validateDoctor};

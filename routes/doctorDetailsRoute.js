@@ -1,9 +1,5 @@
 const express = require("express");
-const {
-  authUsered,
-  adminRole,
-  DoctorRole,
-} = require("../authentication/basicAuth.js");
+
 
 const {
   doctorDetailPost,
