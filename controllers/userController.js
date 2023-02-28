@@ -23,7 +23,7 @@ const authUser = async (req, res) => {
       throw new Error("Invalid password or email");
     }
 
-    var payload;
+    
     res.status(201).json({
       _id: user._id,
       name: user.name,
