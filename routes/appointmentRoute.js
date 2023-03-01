@@ -4,7 +4,7 @@ const {
   postAppointment,
   getAppointment,
   aptSearch,
-} = require("../controllers/appointmentControler.js");
+} = require("../service/appointmentControler.js");
 
 const verifyToken = require("../utils/verify.js");
 

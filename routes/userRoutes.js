@@ -3,7 +3,7 @@ const {
   registerUser,
   authUser,
   requestPasswordReset,
-} = require("../controllers/userController.js");
+} = require("../service/userController.js");
 const verifyToken = require("../utils/verify.js");
 
 const router = express.Router();

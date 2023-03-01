@@ -5,7 +5,7 @@ const {
   doctorDetailPost,
   doctorSearch,
   docsearchAll,
-} = require("../controllers/doctorDetailcontroller.js");
+} = require("../service/doctorDetailcontroller.js");
 const verifyToken = require("../utils/verify.js");
 
 const router = express.Router();
