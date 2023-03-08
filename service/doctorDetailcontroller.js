@@ -21,7 +21,7 @@ const doctorDetailPost = async (req, res) => {
     const newDoctor = new Doctor({
       doctorName: req.body.doctorName,
       userId: req.body.userId,
-      qualification: req.body.qualification,
+      qualification: req.body.qualification, 
       gender: req.body.Gender,
       clinicName: req.body.clinicName,
       phoneNumber: req.body.phoneNumber, 
@@ -31,6 +31,10 @@ const doctorDetailPost = async (req, res) => {
       pinCode: req.body.pinCode,
       aboutMyself: req.body.aboutMyself,
       img: req.body.img,
+      firstHalf:req.body.firstHalf,
+      secondHalf:req.body.secondHalf,
+      slotDuration:req.body.slotDuration,
+      workingDays:req.body.workingDays
     });
   
     await newDoctor.save();
@@ -74,8 +78,34 @@ const doctorSearch = async (req, res) => {
   }
 };
 
+//update Doctor
+async function updateDoc(req,res){
+try {
+const doctorId=req.body.doctorId
+const slotDuration=  req.body.slotDuration
+const workingDays=req.body.workingDays
+console.log(workingDays)
+const getAllDoc= await Doctor.findById(doctorId)
+
+getAllDoc.slotDuration=slotDuration
+getAllDoc.workingDays=workingDays
+getAllDoc=await getAllDoc.save() &&
+res.send(getAllDoc)
+
+
+
+
+  
+} catch (error) {
+  
+}
+}
+
+
+
 module.exports = {
   doctorDetailPost,
   doctorSearch,
   docsearchAll,
+  updateDoc
 };

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const Joi = require("joi");
+const { join } = require("lodash");
 
 const doctorSchema = new mongoose.Schema({
   doctorName: {
@@ -21,7 +22,7 @@ const doctorSchema = new mongoose.Schema({
   },
   userId: {
     type: String,
-  
+
     ref: "User",
   },
   img: {
@@ -37,10 +38,28 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  appointmentId:{
-    type:[String]
+  appointmentId: {
+    type: [String],
+  },
+  firstHalf: {
+    type: String,
+  },
+  secondHalf: {
+    type: String,
+  },
+  slotDuration: {
+    type: String,
+    enum:["15","30","45","60"],
+    
+  },
+  workingDays:{
+    type:[String],
+    enum:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+  },
+  startDate:{
+    type:String
   }
-});
+}); 
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
 
@@ -53,16 +72,18 @@ function validateDoctor(doctor) {
       .length(10)
       .pattern(/^[0-9]+$/)
       .required(),
-      clinicName: Joi.string(),
-      userId: Joi.string(),
-      aboutMyself: Joi.string(),
-      img: Joi.string(),
-      
-
-
+    clinicName: Joi.string(),
+    userId: Joi.string(),
+    aboutMyself: Joi.string(),
+    img: Joi.string(),
+    firstHalf: Joi.string(),
+    secondHalf: Joi.string(),
+    slotDuration:Joi.string(),
+    workingDays:Joi.array(),
+    startDate:Joi.String()
   });
 
   return schema.validate(doctor);
 }
 
-module.exports = {Doctor,validateDoctor};
+module.exports = { Doctor, validateDoctor };
