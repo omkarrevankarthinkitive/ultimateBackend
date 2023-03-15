@@ -38,5 +38,5 @@ function validateApt(appointment) {
     reason: Joi.string(),
   });
   return schema.validate(appointment);
-}
+} 
 module.exports = { Appointment, validateApt };

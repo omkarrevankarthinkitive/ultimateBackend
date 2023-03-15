@@ -1,5 +1,9 @@
-const { RESPONSE_LIMIT_DEFAULT } = require("next/dist/server/api-utils/index.js");
-const { REACT_LOADABLE_MANIFEST } = require("next/dist/shared/lib/constants.js");
+const {
+  RESPONSE_LIMIT_DEFAULT,
+} = require("next/dist/server/api-utils/index.js");
+const {
+  REACT_LOADABLE_MANIFEST,
+} = require("next/dist/shared/lib/constants.js");
 const { Doctor, validateDoctor } = require("../models/doctorDetailModel.js");
 
 const { User } = require("../models/userModel.js");
@@ -91,7 +95,7 @@ async function updateDoc(req, res) {
     getAllDoc.workingTime = workingTime;
     getAllDoc = (await getAllDoc.save()) && res.send(getAllDoc);
   } catch (error) {
-    res.send(error.message)
+    res.send(error.message);
   }
 }
 
