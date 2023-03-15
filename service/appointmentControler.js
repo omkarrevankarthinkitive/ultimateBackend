@@ -1,26 +1,21 @@
-const { Appointment } = require("../models/appointmentModel.js");
+const { Appointment, validateApt } = require("../models/appointmentModel.js");
 
 //post an appointment week
 const postAppointment = async (req, res) => {
   try {
+    const { error } = validateApt(req.body);
+    if (error) {
+      res.send(error.message);
+    }
+
     const newAppointment = new Appointment({
+      doctorId: req.body.doctorId,
+      patientFirstName: req.body.patientFirstName,
+      patientLastName: req.body.patientLastName,
+      startTime: req.body.startTime,
+      endTime: req.body.endTime,
       reason: req.body.reason,
-      location: req.body.location,
-      room: req.body.room,
-      diagnosis: req.body.diagnosis,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      dob: req.body.dob,
-      gender: req.body.gender,
-      cellPhone: req.body.cellPhone,
-      homePhone: req.body.homePhone,
-      email: req.body.email,
-      address: req.body.address,
-      Province: req.body.Province,
-      city: req.body.city,
-      postalCode: req.body.postalCode,
-      aptTime: req.body.aptTime,
-      aptDate: req.body.aptDate,
+      date: req.body.date,
     });
 
     await newAppointment.save();

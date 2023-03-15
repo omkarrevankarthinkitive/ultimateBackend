@@ -1,61 +1,42 @@
 const mongoose = require("mongoose");
+const Joi = require("joi");
+
 const appointmentSchema = new mongoose.Schema({
+  doctorId: {
+    type: String,
+  },
+  patientFirstName: {
+    type: String,
+  },
+  patientLastName: {
+    type: String,
+  },
+  startTime: {
+    type: String,
+  },
+  endTime: {
+    type: String,
+  },
+  date: {
+    type: String,
+  },
   reason: {
-    type: String,
-  },
-  location: {
-    Type: String,
-  },
-  room: {
-    type: String,
-  },
-  diagnosis: {  
-    type: String,
-  },
-  firstName: {
-    type: String,
-  },
-  lastName: {
-    type: String,
-  },
-  dob: {
-    Type: String,
-  },
-  gender: {
-    type: String,
-    
-    
-  },
-  cellPhone: {
-    type: String,
-  },
-  homePhone: {
-    type: Number,
-  },
-  email: {
-    type: String,
-  },
-  address: {
-    Type: String,
-  },
-  province: {
-    type: String,
-  },
-  city: {
-    type: String,
-  },
-  postalCode: {
-    type: String,
-  }, 
-  aptTime: {
-    type: String,
-  },
-  aptDate: {
     type: String,
   },
 });
 
 const Appointment = mongoose.model("Appiontment", appointmentSchema);
 
-module.exports = { Appointment, appointmentSchema };
- 
+function validateApt(appointment) {
+  const schema = Joi.object({
+    doctorId: Joi.string(),
+    patientFirstName: Joi.string(),
+    patientLastName: Joi.string(),
+    startTime: Joi.string(),
+    endTime: Joi.string(),
+    date: Joi.string(),
+    reason: Joi.string(),
+  });
+  return schema.validate(appointment);
+}
+module.exports = { Appointment, validateApt };

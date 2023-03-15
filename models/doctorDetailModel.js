@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const Joi = require("joi");
-const { join } = require("lodash");
 
 const doctorSchema = new mongoose.Schema({
   doctorName: {
@@ -41,25 +40,29 @@ const doctorSchema = new mongoose.Schema({
   appointmentId: {
     type: [String],
   },
-  firstHalf: {
-    type: String,
-  },
-  secondHalf: {
+  workingTime: {
     type: String,
   },
   slotDuration: {
     type: String,
-    enum:["15","30","45","60"],
-    
+    enum: ["15", "30", "45", "60"],
   },
-  workingDays:{
-    type:[String],
-    enum:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+  workingDays: {
+    type: [String],
+    enum: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
   },
-  startDate:{
-    type:String
-  }
-}); 
+  startDate: {
+    type: String,
+  },
+});
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
 
@@ -76,11 +79,10 @@ function validateDoctor(doctor) {
     userId: Joi.string(),
     aboutMyself: Joi.string(),
     img: Joi.string(),
-    firstHalf: Joi.string(),
-    secondHalf: Joi.string(),
-    slotDuration:Joi.string(),
-    workingDays:Joi.array(),
-    startDate:Joi.String()
+    workingTime: Joi.string(),
+    slotDuration: Joi.string(),
+    workingDays: Joi.array(),
+    startDate: Joi.string(),
   });
 
   return schema.validate(doctor);

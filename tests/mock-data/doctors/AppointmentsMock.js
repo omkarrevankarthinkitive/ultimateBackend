@@ -1,24 +1,15 @@
 
 
 const doc={
-    
-    
-        "reason": "Feeling little sick today",
-        "room": 1,
-        "diagnosis": "Covid",
-        "firstName": "David",
-        "lastName": "Bowie",
-        "gender": "M",
-        "cellPhone": 1234567890,
-        "email": "Indian@indian.com",
-        "Province": "state",
-        "city": "karad",
-        "postalCode": "1234",
-        "aptTime": "12:30",
-        "aptDate": "12-30-22",
-        "_id": "63f4af80f17cbf151682cf5c",
-        "__v": 0
-    
+    "doctorId": "64105cb99dcac60133a2e5dd",
+    "patientFirstName": "seth",
+    "patientLastName": "rollins",
+    "startTime": "16:00",
+    "endTime": "16:45",
+    "date": "2023-03-14",
+    "reason": "Cold and Cough",
+    "_id": "641063e09502dfd59b0734c9",
+    "__v": 0
 }
 
 

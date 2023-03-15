@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const Joi = require("joi");
+
 const scheduleSchema = Schema({
-  doctor: {
+  doctorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Doctor",
     required: true,
@@ -20,4 +22,14 @@ const scheduleSchema = Schema({
 });
 
 const Schedular = mongoose.model("Schedular", scheduleSchema);
-module.exports = Schedular;
+
+function validateSchedule(schedular) {
+  const schema = Joi.object({
+    doctorId: Joi.string(),
+    startDate: Joi.string(),
+    endDate: Joi.string(),
+  });
+
+  return schema.validate(schedular);
+}
+module.exports = { Schedular, validateSchedule };
